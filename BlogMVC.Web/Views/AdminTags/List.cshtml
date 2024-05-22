@@ -1,0 +1,45 @@
+@model List<BlogMVC.Web.Models.Domain.Tag>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>All Tags</h1>
+    </div>
+</div>
+
+<div class="container py-5">
+    @if (Model is not null && Model.Any())
+    {
+        
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Display Name</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach (var tag in Model)
+            {
+                <tr>
+                    <td>@tag.Id</td>
+                    <td>@tag.Name</td>
+                    <td>@tag.DisplayName</td>
+                    <td>
+                        <a asp-controller="AdminTags" asp-action="Edit" asp-route-id="@tag.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    }
+    else
+    {
+    <p>No Tags Found</p>
+    }
+</div>
